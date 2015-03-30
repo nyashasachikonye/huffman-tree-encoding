@@ -1,0 +1,9 @@
+1. Unit Tests - https://netbeans.org/kb/docs/cnd/c-unit-test.html
+2. Huffman Encoding - http://www.binaryessence.com/dct/en000080.htm
+                    - https://www.siggraph.org/education/materials/HyperGraph/video/mpeg/mpegfaq/huffman_tutorial.html
+                    - https://mitpress.mit.edu/sicp/full-text/sicp/book/node41.html
+                    - https://www.cse.ust.hk/~dekai/271/notes/L15/L15.pdf
+3. HashMap - http://www.tutorialspoint.com/java/java_hashmap_class.htm
+4. Unordered Map Traversal - http://www.cplusplus.com/reference/unordered_map/unordered_map/begin/
+                           - http://stackoverflow.com/questions/8483985/obtaining-list-of-keys-and-values-from-unordered-map
+5. Unordered Map - http://en.cppreference.com/w/cpp/container/unordered_map
