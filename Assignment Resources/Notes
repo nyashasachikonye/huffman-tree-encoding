@@ -7,3 +7,6 @@
 4. Unordered Map Traversal - http://www.cplusplus.com/reference/unordered_map/unordered_map/begin/
                            - http://stackoverflow.com/questions/8483985/obtaining-list-of-keys-and-values-from-unordered-map
 5. Unordered Map - http://en.cppreference.com/w/cpp/container/unordered_map
+6. Copy Constructor - http://www.cplusplus.com/articles/y8hv0pDG/
+7. Move Constructor - http://en.cppreference.com/w/cpp/language/move_constructor
+8. Priority Queue - http://comsci.liu.edu/~jrodriguez/cs631sp08/c++priorityqueue.html

@@ -35,7 +35,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/HuffmanEncode.o
+	${OBJECTDIR}/HuffmanEncode.o \
+	${OBJECTDIR}/HuffmanNode.o \
+	${OBJECTDIR}/HuffmanTree.o
 
 
 # C Compiler Flags
@@ -66,6 +68,16 @@ ${OBJECTDIR}/HuffmanEncode.o: HuffmanEncode.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HuffmanEncode.o HuffmanEncode.cpp
+
+${OBJECTDIR}/HuffmanNode.o: HuffmanNode.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HuffmanNode.o HuffmanNode.cpp
+
+${OBJECTDIR}/HuffmanTree.o: HuffmanTree.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HuffmanTree.o HuffmanTree.cpp
 
 # Subprojects
 .build-subprojects:

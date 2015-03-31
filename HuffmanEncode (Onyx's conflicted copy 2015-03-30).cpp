@@ -13,24 +13,21 @@
 #include "HuffmanNode.h"
 #include "HuffmanTree.h"
 
-bool compare(HuffmanNode hN1, HuffmanNode hN2) //returns true is hN1 has a lower frequency than hN2
+class nodeCompare
     {
-    if ((hN1.freq) < (hN2.freq))
-        {
-        return true;
-        } else
-        {
-        return false;
-        }
-    return true;
-    }
+public:
 
-//typedef bool (*comp)(int, int);
-//
-//bool compare(int a, int b)
-//    {
-//    return (a < b);
-//    }
+    bool operator()(HuffmanNode& hN1, HuffmanNode& hN2) //returns true is hN1 has a lower frequency than hN2
+        {
+        if (hN1.freq < hN2.freq)
+            {
+            return true;
+            } else
+            {
+            return false;
+            }
+        }
+    };
 
 void printMap(unordered_map<char, int> myset)
     {
@@ -69,21 +66,17 @@ int main(int argc, char** argv)
     //Command Line Parsing
     string flnm = argv[1];
     //Command Line Parsing
-
-
     unordered_map<char, int> myset = freqTable(flnm);
-    //priority_queue<HuffmanNode, vector < HuffmanNode>, comp> HuffmanTreeQueue;
-    std::priority_queue<HuffmanNode, std::vector<HuffmanNode>, decltype(&compare) > HuffmanTreeQueue(&compare);
-
+    priority_queue<HuffmanNode, vector<HuffmanNode>, nodeCompare> HuffmanTreeQueue;
     for (auto kv : myset)
         {
-        HuffmanNode *k = new HuffmanNode(kv.first, kv.second);
-        //cout << "Frequency: " << k->freq << endl;
-        HuffmanTreeQueue.push(*k);
-        *k = HuffmanTreeQueue.top();
-        cout << "Frequency: " << k->freq << endl;
+        HuffmanNode *t = new HuffmanNode(kv.first, kv.second);
+        HuffmanTreeQueue.push(*t);
         }
+
+    HuffmanNode x = HuffmanTreeQueue.pop();
+    cout << "Top Element: " << x.freq << endl;
+    //HTree.HuffmanTreeQueue.push()
 
     return 0;
     }
-
