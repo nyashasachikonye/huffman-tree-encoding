@@ -18,7 +18,11 @@ HuffmanNode::HuffmanNode(char v, int frq)
     right = nullptr;
     }
 
-HuffmanNode::HuffmanNode(const HuffmanNode& orig) { }
+HuffmanNode::HuffmanNode(const HuffmanNode& orig)
+    {
+    freq = orig.freq;
+    value = orig.value;
+    }
 
 HuffmanNode::~HuffmanNode() { }
 

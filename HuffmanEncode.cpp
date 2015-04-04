@@ -12,18 +12,17 @@
 #include <queue>
 #include "HuffmanNode.h"
 #include "HuffmanTree.h"
+#include <memory>
 
 //Huffman Node Priority Queue Comparator
 
 class compare
-
     {
 public:
 
     bool operator()(const HuffmanNode& a, const HuffmanNode& b) //returns true is a has a lower frequency than b
         {
-        return a.freq > b.freq;
-
+        return a.freq < b.freq;
         }
     };
 
@@ -71,20 +70,16 @@ int main(int argc, char** argv)
     //print frequency table
     //printMap(myset);
 
-    //adding frequency table/map to priority queue
-
     //Create Huffman Node Priority Queue
-    //priority_queue<HuffmanNode, vector<HuffmanNode>, decltype(&compare) > HuffmanTreeQueue(&compare);
     priority_queue<HuffmanNode, vector<HuffmanNode>, compare> HuffmanTreeQueue;
 
     for (it = myset.begin(); it != myset.end(); ++it)
         {
-        HuffmanNode k = HuffmanNode(it -> first, it -> second);
-        //cout << "Frequency: " << it -> first << " " << it -> second << endl;
-        HuffmanTreeQueue.push(k);
-        cout << "Frequency: " << HuffmanTreeQueue.top().freq << endl;
+        shared_ptr<HuffmanNode> k(new HuffmanNode(it -> first, it -> second));
+        HuffmanTreeQueue.push(*k);
+        cout << "Value: " << HuffmanTreeQueue.top().value << endl;
+        HuffmanTreeQueue.pop();
         }
-
 
     return 0;
     }
