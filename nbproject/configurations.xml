@@ -15,6 +15,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Development/Development.cpp</itemPath>
       <itemPath>HuffmanEncode.cpp</itemPath>
       <itemPath>HuffmanNode.cpp</itemPath>
       <itemPath>HuffmanTree.cpp</itemPath>
@@ -45,6 +46,8 @@
       <item path="Assignment Resources/Notes" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Assignment Resources/inputfile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Development/Development.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="HuffmanEncode.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -80,6 +83,8 @@
       <item path="Assignment Resources/Notes" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Assignment Resources/inputfile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Development/Development.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="HuffmanEncode.cpp" ex="false" tool="1" flavor2="0">
       </item>

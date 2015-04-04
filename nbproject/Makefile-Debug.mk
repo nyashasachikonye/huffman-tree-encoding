@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Development/Development.o \
 	${OBJECTDIR}/HuffmanEncode.o \
 	${OBJECTDIR}/HuffmanNode.o \
 	${OBJECTDIR}/HuffmanTree.o
@@ -63,6 +64,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/huffmantreeencoding: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/huffmantreeencoding ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/Development/Development.o: Development/Development.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Development
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Development/Development.o Development/Development.cpp
 
 ${OBJECTDIR}/HuffmanEncode.o: HuffmanEncode.cpp 
 	${MKDIR} -p ${OBJECTDIR}

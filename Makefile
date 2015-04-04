@@ -16,7 +16,14 @@ LIBS = -lm -l$(CUSTOM_LIBRARY) #Referencing System Library:
 huffencode: HuffmanEncode.o HuffmanNode.o HuffmanTree.o
 	g++ -o huffencode HuffmanEncode.o HuffmanNode.o HuffmanTree.o $(CCFLAGS)
 
+dev: Development.o
+	g++ -o dev Development.o $(CCFLAGS)
+
 clean:
 	rm -f *.o
+
 run:	huffencode
 	./huffencode "Assignment Resources/inputfile"
+
+test:  dev
+	./dev

@@ -33,6 +33,5 @@ public:
     char getValue(); //obtain the value of the node
 };
 
-
 #endif	/* HUFFMANNODE_H */
 

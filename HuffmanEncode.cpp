@@ -13,24 +13,19 @@
 #include "HuffmanNode.h"
 #include "HuffmanTree.h"
 
-bool compare(HuffmanNode hN1, HuffmanNode hN2) //returns true is hN1 has a lower frequency than hN2
-    {
-    if ((hN1.freq) < (hN2.freq))
-        {
-        return true;
-        } else
-        {
-        return false;
-        }
-    return true;
-    }
+//Huffman Node Priority Queue Comparator
 
-//typedef bool (*comp)(int, int);
-//
-//bool compare(int a, int b)
-//    {
-//    return (a < b);
-//    }
+class compare
+
+    {
+public:
+
+    bool operator()(const HuffmanNode& a, const HuffmanNode& b) //returns true is a has a lower frequency than b
+        {
+        return a.freq > b.freq;
+
+        }
+    };
 
 void printMap(unordered_map<char, int> myset)
     {
@@ -70,20 +65,28 @@ int main(int argc, char** argv)
     string flnm = argv[1];
     //Command Line Parsing
 
-
+    //create a frequency table from characters
     unordered_map<char, int> myset = freqTable(flnm);
-    //priority_queue<HuffmanNode, vector < HuffmanNode>, comp> HuffmanTreeQueue;
-    std::priority_queue<HuffmanNode, std::vector<HuffmanNode>, decltype(&compare) > HuffmanTreeQueue(&compare);
+    unordered_map<char, int>::iterator it;
+    //print frequency table
+    //printMap(myset);
 
-    for (auto kv : myset)
+    //adding frequency table/map to priority queue
+
+    //Create Huffman Node Priority Queue
+    //priority_queue<HuffmanNode, vector<HuffmanNode>, decltype(&compare) > HuffmanTreeQueue(&compare);
+    priority_queue<HuffmanNode, vector<HuffmanNode>, compare> HuffmanTreeQueue;
+
+    for (it = myset.begin(); it != myset.end(); ++it)
         {
-        HuffmanNode *k = new HuffmanNode(kv.first, kv.second);
-        //cout << "Frequency: " << k->freq << endl;
-        HuffmanTreeQueue.push(*k);
-        *k = HuffmanTreeQueue.top();
-        cout << "Frequency: " << k->freq << endl;
+        HuffmanNode k = HuffmanNode(it -> first, it -> second);
+        //cout << "Frequency: " << it -> first << " " << it -> second << endl;
+        HuffmanTreeQueue.push(k);
+        cout << "Frequency: " << HuffmanTreeQueue.top().freq << endl;
         }
+
 
     return 0;
     }
+
 
