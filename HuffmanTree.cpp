@@ -10,8 +10,15 @@
 
 using namespace std;
 
-HuffmanTree::HuffmanTree() { }
+HuffmanTree::HuffmanTree(HuffmanNode rt)
+    {
+    root = rt;
+    }
 
-//HuffmanTree::HuffmanTree(const HuffmanTree& orig) { }
+HuffmanTree::HuffmanTree() {
+    //fill in
+    }
+
+HuffmanTree::HuffmanTree(const HuffmanTree& orig) { }
 
 HuffmanTree::~HuffmanTree() { }

@@ -21,6 +21,8 @@ public:
     HuffmanNode *right;
     int freq;
 
+    HuffmanNode();
+
     HuffmanNode(char v, int frq); //TODO: Complete Huffman Node Default Constructor
     //TODO: Complete Huffman Node Move Constructor
 

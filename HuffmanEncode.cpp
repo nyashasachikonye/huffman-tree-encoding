@@ -22,7 +22,7 @@ public:
 
     bool operator()(const HuffmanNode& a, const HuffmanNode& b) //returns true is a has a lower frequency than b
         {
-        return a.freq < b.freq;
+        return a.freq > b.freq;
         }
     };
 
@@ -57,6 +57,38 @@ unordered_map<char, int> freqTable(string filename)
     return myset;
     }
 
+void printHuffmanTree(HuffmanNode *HuffmanTree)
+    {
+    cout << HuffmanTree->value << " : " << HuffmanTree->freq << endl;
+    if (HuffmanTree->left != nullptr)
+        {
+        printHuffmanTree(HuffmanTree->left);
+        cout << "     ";
+        printHuffmanTree(HuffmanTree->right);
+        cout << endl;
+        } else
+        {
+        //cout << "     " << endl;
+        }
+
+    }
+
+void codeTableGen(HuffmanNode *HuffmanTree)
+    {
+    string code;
+    cout << HuffmanTree->value << " : " << HuffmanTree->freq << endl;
+    if (HuffmanTree->left != nullptr)
+        {
+
+        printHuffmanTree(HuffmanTree->left);
+        printHuffmanTree(HuffmanTree->right);
+        cout << endl;
+        } else
+        {
+        }
+
+    }
+
 int main(int argc, char** argv)
     {
 
@@ -77,11 +109,65 @@ int main(int argc, char** argv)
         {
         shared_ptr<HuffmanNode> k(new HuffmanNode(it -> first, it -> second));
         HuffmanTreeQueue.push(*k);
-        cout << "Value: " << HuffmanTreeQueue.top().value << endl;
-        HuffmanTreeQueue.pop();
         }
+
+    //building tree
+
+    while (HuffmanTreeQueue.size() > 1)
+        {
+        //cout << "Queue Size: " << HuffmanTreeQueue.size() << endl;
+        HuffmanNode left = HuffmanTreeQueue.top();
+        HuffmanTreeQueue.pop();
+        //cout << "Queue Size: " << HuffmanTreeQueue.size() << endl;
+        //cout << "Left: " << left.value << " " << left.freq << endl;
+        HuffmanNode right = HuffmanTreeQueue.top();
+        HuffmanTreeQueue.pop();
+        //cout << "Queue Size: " << HuffmanTreeQueue.size() << endl;
+        //cout << "Right: " << right.value << " " << right.freq << endl;
+        //cout << endl;
+        HuffmanNode *parent = new HuffmanNode(' ', (left.freq + right.freq));
+        parent->left = &left;
+        parent->right = &right;
+        //HuffmanNode parent = new HuffmanNode(' ', (left.freq + right.freq));
+        //cout << "Parent: " << parent->value << " " << parent->freq << endl;
+        //cout << "Children: Left Freq: " << parent->left->freq << " Right Freq: " << parent->right->freq << endl;
+        HuffmanTreeQueue.push(*parent);
+        //cout << "Queue Size: " << HuffmanTreeQueue.size() << endl;
+        //cout << endl;
+        }
+
+    //HuffmanTree *hTree = new HuffmanTree(HuffmanTreeQueue.top());
+    //move tree to hTree from the queue
+    //then delete the queue.
+
+    HuffmanNode *root = new HuffmanNode(' ', 10);
+    HuffmanNode *a = new HuffmanNode('a', 4);
+    HuffmanNode *b = new HuffmanNode(' ', 6);
+    HuffmanNode *c = new HuffmanNode('d', 3);
+    HuffmanNode *d = new HuffmanNode(' ', 3);
+    HuffmanNode *e = new HuffmanNode('c', 1);
+    HuffmanNode *f = new HuffmanNode('b', 2);
+    root->left = a;
+    root->right = b;
+    b->left = c;
+    b->right = d;
+    d->left = e;
+    d->right = f;
+
+    //    cout << endl;
+    //cout << "++++++++++++++++++" << endl;
+    HuffmanNode r = HuffmanTreeQueue.top();
+    HuffmanNode * t = &r;
+    //    cout << r.freq << endl;
+    //    cout << r.left->freq << endl;
+    //    cout << " " << r.right->freq << endl;
+    //    cout << r.right->left->freq << endl;
+    //    cout << " " << r.right->right->freq << endl;
+
+    printHuffmanTree(t);
 
     return 0;
     }
+
 
 

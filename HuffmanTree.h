@@ -7,13 +7,18 @@
 
 #ifndef HUFFMANTREE_H
 #define	HUFFMANTREE_H
+#include "HuffmanNode.h"
 
-using namespace std;
+//using namespace std;
 
 class HuffmanTree {
+private:
 public:
+    HuffmanNode root;
+
     HuffmanTree(); //TODO: Complete Huffman Tree Default Constructor
-    //HuffmanTree(const HuffmanTree& orig);
+    HuffmanTree(HuffmanNode rt);
+    HuffmanTree(const HuffmanTree& orig);
     ~HuffmanTree();
 
 

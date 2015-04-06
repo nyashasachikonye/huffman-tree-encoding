@@ -10,6 +10,8 @@
 
 using namespace std;
 
+HuffmanNode::HuffmanNode() { }
+
 HuffmanNode::HuffmanNode(char v, int frq)
     {
     value = v;
@@ -22,6 +24,10 @@ HuffmanNode::HuffmanNode(const HuffmanNode& orig)
     {
     freq = orig.freq;
     value = orig.value;
+
+    //needs some attention
+    left = orig.left;
+    right = orig.right;
     }
 
 HuffmanNode::~HuffmanNode() { }
