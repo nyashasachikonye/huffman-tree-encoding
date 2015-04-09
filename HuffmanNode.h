@@ -8,6 +8,8 @@
 #ifndef HUFFMANNODE_H
 #define	HUFFMANNODE_H
 
+#include <memory>
+
 using namespace std;
 
 class HuffmanNode {
@@ -17,14 +19,18 @@ private:
 public:
 
     char value;
-    HuffmanNode *left;
-    HuffmanNode *right;
+    shared_ptr<HuffmanNode> left;
+    //HuffmanNode *left;
+    shared_ptr<HuffmanNode> right;
+    //HuffmanNode *right;
     int freq;
 
     HuffmanNode();
 
     HuffmanNode(char v, int frq); //TODO: Complete Huffman Node Default Constructor
     //TODO: Complete Huffman Node Move Constructor
+
+    HuffmanNode(int frq);
 
     HuffmanNode(const HuffmanNode& orig); //TODO: Complete Huffman Node Copy Constructor
     ~HuffmanNode(); //TODO: Complete Huffman Node Destructor

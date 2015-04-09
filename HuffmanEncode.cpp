@@ -1,7 +1,7 @@
 /*
  * File:   HuffmanEncode.cpp
- * Author: Sach
- *
+ * Author: Kuziwa Sachikonye
+ * Student Number: SCHKUZ002
  * Created on 30 March 2015, 9:36 AM
  */
 
@@ -12,7 +12,6 @@
 #include <queue>
 #include "HuffmanNode.h"
 #include "HuffmanTree.h"
-#include <memory>
 
 //Huffman Node Priority Queue Comparator
 
@@ -26,6 +25,15 @@ public:
         }
     };
 
+void printMap(unordered_map<char, string> myset)
+    {
+
+    for (auto kv : myset)
+        {
+        cout << kv.first << ": " << kv.second << endl;
+        }
+    }
+
 void printMap(unordered_map<char, int> myset)
     {
 
@@ -37,55 +45,133 @@ void printMap(unordered_map<char, int> myset)
 
 unordered_map<char, int> freqTable(string filename)
     {
-    string line;
+    char line;
     unordered_map<char, int> myset;
     ifstream myfile(filename);
-    while (getline(myfile, line))
+    while (myfile >> noskipws >> line)
         {
-        for (int f = 0; f < line.length(); f++)
+        if (line == ' ')
             {
-            if (myset.count(line[f]) == 1)
-                {
-                myset[line[f]]++;
-                } else
-                {
-                myset.insert(make_pair(line[f], 1));
-                }
+            line = '_';
+            }
+        if (line == '\n')
+            {
+            line = '/';
+            }
+        if (myset.count(line) == 1)
+            {
+            myset[line]++;
+            } else
+            {
+            myset.insert(make_pair(line, 1));
             }
         }
     myfile.close();
     return myset;
     }
 
-void printHuffmanTree(HuffmanNode *HuffmanTree)
+string readFile(string filename)
     {
-    cout << HuffmanTree->value << " : " << HuffmanTree->freq << endl;
-    if (HuffmanTree->left != nullptr)
+    char line;
+    string a;
+    ifstream myfile(filename);
+    while (myfile >> noskipws >> line)
         {
-        printHuffmanTree(HuffmanTree->left);
-        cout << "     ";
-        printHuffmanTree(HuffmanTree->right);
-        cout << endl;
-        } else
-        {
-        //cout << "     " << endl;
+        if (line == ' ')
+            {
+            line = '_';
+            }
+        if (line == '\n')
+            {
+            line = '/';
+            }
+        a += line;
         }
-
+    myfile.close();
+    return a;
     }
 
-void codeTableGen(HuffmanNode *HuffmanTree)
+void printHuffmanTree(shared_ptr<HuffmanNode> root)
     {
-    string code;
-    cout << HuffmanTree->value << " : " << HuffmanTree->freq << endl;
-    if (HuffmanTree->left != nullptr)
-        {
 
-        printHuffmanTree(HuffmanTree->left);
-        printHuffmanTree(HuffmanTree->right);
-        cout << endl;
-        } else
+    if (root->left != nullptr)
         {
+        printHuffmanTree(root->left);
         }
+    if (root->value != ' ')
+        {
+        cout << root->value << " : " << root->freq << endl;
+        //create codeob
+        }
+    if (root->right != nullptr)
+        {
+        printHuffmanTree(root->right);
+        }
+    }
+
+void codeTableGen(shared_ptr<HuffmanNode> root, unordered_map<char, string> &map, string o)
+    {
+    if (root->left != nullptr)
+        {
+        codeTableGen(root->left, map, o + "0");
+        }
+    if (root->value != ' ') //checking leaf
+        {
+        //        if (root->value == '_')
+        //            {
+        //            root->value = ' ';
+        //            }
+        //        if (root->value == '/')
+        //            {
+        //            root->value = '\n';
+        //            }
+        map.insert(make_pair(root->value, o));
+        }
+
+    if (root->right != nullptr)
+        {
+        codeTableGen(root->right, map, o + "1");
+        }
+    }
+
+string compress(string cBuffer, unordered_map<char, string> codeTable)
+    {
+    string out;
+
+    for (int k = 0; k < cBuffer.length(); k++)
+        {
+        //        out += "." + codeTable.at((cBuffer[k]));
+        out += codeTable.at((cBuffer[k]));
+        }
+    return out;
+    }
+
+void writeFile(string buffer, string filename)
+    {
+    ofstream out(filename);
+    out << buffer;
+    out.close();
+    }
+
+void writeHeader(unordered_map<char, string> cMap, string flm)
+    {
+    flm = flm + ".hdr";
+    ofstream out(flm);
+    //write field count
+    out << "Field Count: " << cMap.size() << "\n\n";
+    for (auto kv : cMap)
+        {
+        //        if (kv.first == '_')
+        //            {
+        //            kv.first = ' ';
+        //            }
+        //        if (kv.first == '/')
+        //            {
+        //            kv.first = '\n';
+        //            }
+        out << kv.first << ": " << kv.second << endl;
+        }
+    out.close();
 
     }
 
@@ -94,7 +180,11 @@ int main(int argc, char** argv)
 
     //Command Line Parsing
     string flnm = argv[1];
+    string oflnm = argv[2];
     //Command Line Parsing
+
+    //creating buffer for compression
+    string cBuffer = readFile(argv[1]);
 
     //create a frequency table from characters
     unordered_map<char, int> myset = freqTable(flnm);
@@ -112,23 +202,22 @@ int main(int argc, char** argv)
         }
 
     //building tree
-
     while (HuffmanTreeQueue.size() > 1)
         {
-        //cout << "Queue Size: " << HuffmanTreeQueue.size() << endl;
-        HuffmanNode left = HuffmanTreeQueue.top();
+        //        cout << "Queue Size: " << HuffmanTreeQueue.size() << endl;
+        shared_ptr<HuffmanNode> left = make_shared<HuffmanNode>(HuffmanTreeQueue.top());
+        HuffmanTreeQueue.pop();
+        //        cout << "Queue Size: " << HuffmanTreeQueue.size() << endl;
+        //cout << "Left: " << left->value << " " << left->freq << endl;
+        shared_ptr<HuffmanNode> right = make_shared<HuffmanNode>(HuffmanTreeQueue.top());
         HuffmanTreeQueue.pop();
         //cout << "Queue Size: " << HuffmanTreeQueue.size() << endl;
-        //cout << "Left: " << left.value << " " << left.freq << endl;
-        HuffmanNode right = HuffmanTreeQueue.top();
-        HuffmanTreeQueue.pop();
-        //cout << "Queue Size: " << HuffmanTreeQueue.size() << endl;
-        //cout << "Right: " << right.value << " " << right.freq << endl;
+        //cout << "Right: " << right->value << " " << right->freq << endl;
         //cout << endl;
-        HuffmanNode *parent = new HuffmanNode(' ', (left.freq + right.freq));
-        parent->left = &left;
-        parent->right = &right;
-        //HuffmanNode parent = new HuffmanNode(' ', (left.freq + right.freq));
+        shared_ptr<HuffmanNode> parent(new HuffmanNode(' ', (left->freq + right->freq)));
+        parent->left = left;
+        parent->right = right;
+        //        HuffmanNode parent = new HuffmanNode(' ', (left.freq + right.freq));
         //cout << "Parent: " << parent->value << " " << parent->freq << endl;
         //cout << "Children: Left Freq: " << parent->left->freq << " Right Freq: " << parent->right->freq << endl;
         HuffmanTreeQueue.push(*parent);
@@ -136,35 +225,23 @@ int main(int argc, char** argv)
         //cout << endl;
         }
 
+
     //HuffmanTree *hTree = new HuffmanTree(HuffmanTreeQueue.top());
     //move tree to hTree from the queue
     //then delete the queue.
 
-    HuffmanNode *root = new HuffmanNode(' ', 10);
-    HuffmanNode *a = new HuffmanNode('a', 4);
-    HuffmanNode *b = new HuffmanNode(' ', 6);
-    HuffmanNode *c = new HuffmanNode('d', 3);
-    HuffmanNode *d = new HuffmanNode(' ', 3);
-    HuffmanNode *e = new HuffmanNode('c', 1);
-    HuffmanNode *f = new HuffmanNode('b', 2);
-    root->left = a;
-    root->right = b;
-    b->left = c;
-    b->right = d;
-    d->left = e;
-    d->right = f;
+    //HuffmanNode r = HuffmanTreeQueue.top();
+    shared_ptr<HuffmanNode> t = make_shared<HuffmanNode>(HuffmanTreeQueue.top());
+    unordered_map<char, string> codeTable;
+    codeTableGen(t, codeTable, "");
+    //    cout << "++++++++++++++++++" << endl;
+    printMap(codeTable);
 
-    //    cout << endl;
-    //cout << "++++++++++++++++++" << endl;
-    HuffmanNode r = HuffmanTreeQueue.top();
-    HuffmanNode * t = &r;
-    //    cout << r.freq << endl;
-    //    cout << r.left->freq << endl;
-    //    cout << " " << r.right->freq << endl;
-    //    cout << r.right->left->freq << endl;
-    //    cout << " " << r.right->right->freq << endl;
+    cout << endl;
 
-    printHuffmanTree(t);
+    string output = compress(cBuffer, codeTable);
+    writeFile(output, oflnm);
+    writeHeader(codeTable, oflnm);
 
     return 0;
     }

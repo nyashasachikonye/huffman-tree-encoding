@@ -23,7 +23,7 @@ clean:
 	rm -f *.o
 
 run:	huffencode
-	./huffencode "Assignment Resources/inputfile"
+	./huffencode "Assignment Resources/inputfile" "Assignment Resources/outputfile"
 
 test:  dev
 	./dev

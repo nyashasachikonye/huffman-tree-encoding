@@ -8,6 +8,7 @@
 #include <cstddef>
 #include "HuffmanNode.h"
 
+
 using namespace std;
 
 HuffmanNode::HuffmanNode() { }
@@ -15,6 +16,13 @@ HuffmanNode::HuffmanNode() { }
 HuffmanNode::HuffmanNode(char v, int frq)
     {
     value = v;
+    freq = frq;
+    left = nullptr;
+    right = nullptr;
+    }
+
+HuffmanNode::HuffmanNode(int frq)
+    {
     freq = frq;
     left = nullptr;
     right = nullptr;

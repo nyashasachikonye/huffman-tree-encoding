@@ -11,6 +11,8 @@
                    displayName="Resource Files"
                    projectFiles="true">
       <itemPath>Assignment Resources/inputfile</itemPath>
+      <itemPath>Assignment Resources/outputfile</itemPath>
+      <itemPath>Assignment Resources/outputfile.hdr</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -46,6 +48,13 @@
       <item path="Assignment Resources/Notes" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Assignment Resources/inputfile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Assignment Resources/outputfile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Assignment Resources/outputfile.hdr"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="Development/Development.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -83,6 +92,13 @@
       <item path="Assignment Resources/Notes" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Assignment Resources/inputfile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Assignment Resources/outputfile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Assignment Resources/outputfile.hdr"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="Development/Development.cpp" ex="false" tool="1" flavor2="0">
       </item>

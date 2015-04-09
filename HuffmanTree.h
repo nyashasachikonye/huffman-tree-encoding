@@ -7,9 +7,10 @@
 
 #ifndef HUFFMANTREE_H
 #define	HUFFMANTREE_H
-#include "HuffmanNode.h"
 
-//using namespace std;
+using namespace std;
+
+class HuffmanNode;
 
 class HuffmanTree {
 private:
