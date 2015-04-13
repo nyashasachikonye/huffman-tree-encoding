@@ -1,0 +1,43 @@
+# README FILE:
+# Project Title: Huffman Encoding Tool
+# Assignment: CSC3022H C++ Assignment 3
+# Author : Kuziwa Sachikonye
+# Student Number: SCHKUZ002
+# Date: 10/04/15
+
+Note:
+=================== RUNNING THE PROGRAM: ===================
+
+1. Enter the native terminal.
+2. Navigate to the project directory.
+3. Clean the project by entering "make clean".
+4. Build the project by entering "make".
+5. Run the program by entering the followin:
+
+    ./huffencode <inputFile> <output file>
+
+where:
+<inputfile> : is the relative (to the source program) location of the file that is to be encoded.
+<outputfile> : is the relative (to the source program) location of the encoded file.
+
+6. The program will output  a text file (bit-stream) of the relevant input file as a series of bits.
+There will be an included <ouputfile>.hdr which will contain the code table and the number of distinct fields.
+
+7. To clean the project, enter into the terminal "make clean"
+
+=============== AVAILABLE MAKEFILE COMMANDS ================
+
+make: this rule will build and compile the project
+make clean: this rule allows the user to delete all binary files.
+
+NOTE:
+> This project does not have a "make run" option as the user is expected
+      to enter arguments into the program
+
+> This program does not perform exception handling and will work unexpectedly if unexpected input is supplied.
+
+============= TERMINAL COMMAND LINE ARGUMENT NOTES ===========
+Argument Instructions:
+
+* The arguments must be entered in the specified order.
+

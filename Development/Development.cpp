@@ -1,43 +1,51 @@
-/*
- * File:   Development.cpp
- * Author: Sach
- *
- * Created on 03 April 2015, 6:27 PM
- */
+#include "../HuffmanTree.h"
 
-#include <cstdlib>
-#include <iostream>
-#include <queue>
-#include <vector>
-
-using namespace std;
-
-/*
- *
- */
-
-typedef bool(*fptr)(int, int); //any function matching the signature: bool fptr(int,int)
-
-bool comp(int a, int b)
+void printMap(unordered_map<char, string> myset)
     {
-    return a > b;
+    /* Function Definition:
+     * This is a developmental function used to print out an unordered map. This
+     * is used to trace that the correct contents have been written to the Code
+     * Table.
+     */
+
+    for (auto kv : myset)
+        {
+        cout << kv.first << ": " << kv.second << endl;
+        }
     }
 
-int main(int argc, char** argv)
+void printMap(unordered_map<char, int> myset)
     {
+    /* Function Definition:
+     * This is a developmental function used to print out an unordered map. This
+     * is used to trace that the correct contents have been written to the frequency map.
+     */
 
-    std::priority_queue<int, std::vector<int>, fptr > q(comp);
-    q.push(5);
-    q.push(1);
-    q.push(6);
-    q.push(3);
-    printf("top val %d\n", q.top());
-    q.pop();
-    printf("top val %d\n", q.top());
-    q.pop();
-    printf("top val %d\n", q.top());
-    q.pop();
-    printf("top val %d\n", q.top());
-    q.pop();
-    return 0;
+    for (auto kv : myset)
+        {
+        cout << kv.first << ": " << kv.second << endl;
+        }
+    }
+
+void printHuffmanTree(shared_ptr<HuffmanNode> root)
+    {
+    /* Function Definition:
+     * This function is a developmental function used to trace the contents of
+     * the Huffman Tree. It provides an in order traversal of the Huffman Tree
+     * and outputs each one the the leaves (letters) and their frequency of occurence
+     * in the text-file.
+     */
+
+    if (root->left != nullptr)
+        {
+        printHuffmanTree(root->left);
+        }
+    if ((root->left == nullptr)&&(root->right == nullptr))
+        {
+        cout << root->value << " : " << root->freq << endl;
+        }
+    if (root->right != nullptr)
+        {
+        printHuffmanTree(root->right);
+        }
     }

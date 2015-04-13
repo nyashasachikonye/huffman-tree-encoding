@@ -14,16 +14,16 @@ LIBS = -lm -l$(CUSTOM_LIBRARY) #Referencing System Library:
 	$(CPP) -c -o $@ $< $(CPPFLAGS)
 
 huffencode: HuffmanEncode.o HuffmanNode.o HuffmanTree.o
-	g++ -o huffencode HuffmanEncode.o HuffmanNode.o HuffmanTree.o $(CCFLAGS)
-
-dev: Development.o
-	g++ -o dev Development.o $(CCFLAGS)
+	$(CPP) -o huffencode HuffmanEncode.o HuffmanNode.o HuffmanTree.o $(CCFLAGS)
 
 clean:
 	rm -f *.o
+	rm -f huffencode
 
 run:	huffencode
 	./huffencode "Assignment Resources/inputfile" "Assignment Resources/outputfile"
 
-test:  dev
-	./dev
+mktut: tut.o
+	$(CPP) -o tut tut.cpp -$(CPPFLAGS)
+
+rntut: ./tut

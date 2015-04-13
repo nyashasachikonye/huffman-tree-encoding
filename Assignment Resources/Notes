@@ -10,3 +10,5 @@
 6. Copy Constructor - http://www.cplusplus.com/articles/y8hv0pDG/
 7. Move Constructor - http://en.cppreference.com/w/cpp/language/move_constructor
 8. Priority Queue - http://comsci.liu.edu/~jrodriguez/cs631sp08/c++priorityqueue.html
+9. Bit Stream Conversion - http://www.eda.org/sv-ec/Extensions/EXT_12_bitstream_v3.pdf
+10. Reading a block of bytes - http://stackoverflow.com/questions/19429733/reading-a-block-of-bytes-from-one-file-and-writing-to-other-until-all-blocks-are

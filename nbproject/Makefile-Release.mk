@@ -35,10 +35,15 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/CodeTableBuilder.o \
 	${OBJECTDIR}/Development/Development.o \
+	${OBJECTDIR}/Encoder.o \
+	${OBJECTDIR}/FileOperations.o \
+	${OBJECTDIR}/FrequencyTally.o \
 	${OBJECTDIR}/HuffmanEncode.o \
 	${OBJECTDIR}/HuffmanNode.o \
-	${OBJECTDIR}/HuffmanTree.o
+	${OBJECTDIR}/HuffmanTree.o \
+	${OBJECTDIR}/HuffmanTreeBuilder.o
 
 
 # C Compiler Flags
@@ -65,10 +70,30 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/huffmantreeencoding: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/huffmantreeencoding ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/CodeTableBuilder.o: CodeTableBuilder.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CodeTableBuilder.o CodeTableBuilder.cpp
+
 ${OBJECTDIR}/Development/Development.o: Development/Development.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Development
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Development/Development.o Development/Development.cpp
+
+${OBJECTDIR}/Encoder.o: Encoder.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Encoder.o Encoder.cpp
+
+${OBJECTDIR}/FileOperations.o: FileOperations.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FileOperations.o FileOperations.cpp
+
+${OBJECTDIR}/FrequencyTally.o: FrequencyTally.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FrequencyTally.o FrequencyTally.cpp
 
 ${OBJECTDIR}/HuffmanEncode.o: HuffmanEncode.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -84,6 +109,11 @@ ${OBJECTDIR}/HuffmanTree.o: HuffmanTree.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HuffmanTree.o HuffmanTree.cpp
+
+${OBJECTDIR}/HuffmanTreeBuilder.o: HuffmanTreeBuilder.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HuffmanTreeBuilder.o HuffmanTreeBuilder.cpp
 
 # Subprojects
 .build-subprojects:
