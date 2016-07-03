@@ -10,8 +10,6 @@
 
 #include <memory>
 
-using namespace std;
-
 class HuffmanNode {
 private:
 
@@ -19,26 +17,27 @@ private:
 public:
 
     char value;
-    shared_ptr<HuffmanNode> left;
-    //HuffmanNode *left;
-    shared_ptr<HuffmanNode> right;
-    //HuffmanNode *right;
+    std::shared_ptr<HuffmanNode> left;
+
+    std::shared_ptr<HuffmanNode> right;
+
     int freq;
 
-    HuffmanNode();
+    HuffmanNode(void) = default;
 
-    HuffmanNode(char v, int frq); //TODO: Complete Huffman Node Default Constructor
-    //TODO: Complete Huffman Node Move Constructor
+    HuffmanNode(char v, int frq);
 
     HuffmanNode(int frq);
 
-    HuffmanNode(const HuffmanNode& orig); //TODO: Complete Huffman Node Copy Constructor
-    ~HuffmanNode(); //TODO: Complete Huffman Node Destructor
-    //TODO: Create Huffman Node Assignment Operator
-    //TODO: Create Huffman Node Move Assignment operator
+    HuffmanNode(const HuffmanNode& orig);
 
-    int getFreq(); //obtain the frequency of the letter
-    char getValue(); //obtain the value of the node
+    HuffmanNode(HuffmanNode && rhs) = default;
+
+    HuffmanNode & operator=(const HuffmanNode & rhs) = default;
+    HuffmanNode & operator=(HuffmanNode && rhs) = default;
+
+    ~HuffmanNode();
+
 };
 
 #endif	/* HUFFMANNODE_H */

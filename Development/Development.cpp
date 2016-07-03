@@ -1,6 +1,6 @@
 #include "../HuffmanTree.h"
 
-void printMap(unordered_map<char, string> myset)
+void printMap(std::unordered_map<char, std::string> myset)
     {
     /* Function Definition:
      * This is a developmental function used to print out an unordered map. This
@@ -10,11 +10,11 @@ void printMap(unordered_map<char, string> myset)
 
     for (auto kv : myset)
         {
-        cout << kv.first << ": " << kv.second << endl;
+        std::cout << kv.first << ": " << kv.second << std::endl;
         }
     }
 
-void printMap(unordered_map<char, int> myset)
+void printMap(std::unordered_map<char, int> myset)
     {
     /* Function Definition:
      * This is a developmental function used to print out an unordered map. This
@@ -23,11 +23,11 @@ void printMap(unordered_map<char, int> myset)
 
     for (auto kv : myset)
         {
-        cout << kv.first << ": " << kv.second << endl;
+        std::cout << kv.first << ": " << kv.second << std::endl;
         }
     }
 
-void printHuffmanTree(shared_ptr<HuffmanNode> root)
+void printHuffmanTree(std::shared_ptr<HuffmanNode> root)
     {
     /* Function Definition:
      * This function is a developmental function used to trace the contents of
@@ -42,7 +42,7 @@ void printHuffmanTree(shared_ptr<HuffmanNode> root)
         }
     if ((root->left == nullptr)&&(root->right == nullptr))
         {
-        cout << root->value << " : " << root->freq << endl;
+        std::cout << root->value << " : " << root->freq << std::endl;
         }
     if (root->right != nullptr)
         {

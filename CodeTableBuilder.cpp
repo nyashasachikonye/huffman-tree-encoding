@@ -2,7 +2,7 @@
 //#include "HuffmanNode.h"
 #include "HuffmanTree.h"
 
-void codeTableGen(shared_ptr<HuffmanNode> root, unordered_map<char, string> &map, string code)
+void codeTableGen(std::shared_ptr<HuffmanNode> root, std::unordered_map<char, std::string> &map, std::string code)
     {
     /* Function Definition:
      * This recursive function traverses the HuffmanTree and creates a code table based on
@@ -21,7 +21,7 @@ void codeTableGen(shared_ptr<HuffmanNode> root, unordered_map<char, string> &map
                                                             this represents a letter and thus we finally insert this element and the final code
                                                             into the code table.*/
         {
-        map.insert(make_pair(root->value, code)); /* Statement Description: Inserting the letter and its respective code into the Code Table*/
+        map.insert(std::make_pair(root->value, code)); /* Statement Description: Inserting the letter and its respective code into the Code Table*/
         }
 
     if (root->right != nullptr) /* Statement Description: As long as there is a right child, we

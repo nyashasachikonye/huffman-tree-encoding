@@ -1,6 +1,6 @@
 #include "HuffmanTree.h"
 
-shared_ptr<HuffmanTree> buildHuffTree(priority_queue<HuffmanNode, vector<HuffmanNode>, compare> &HuffmanTreeQueue)
+std::shared_ptr<HuffmanTree> buildHuffTree(std::priority_queue<HuffmanNode, std::vector<HuffmanNode>, compare> &HuffmanTreeQueue)
     {
 
     /*Description: Constructing a Huffman Tree by selecting the first two nodes from the top of the Huffman Tree Queue and aggregate
@@ -8,7 +8,7 @@ shared_ptr<HuffmanTree> buildHuffTree(priority_queue<HuffmanNode, vector<Huffman
     while (HuffmanTreeQueue.size() > 1)
         {
         /* Statement Description: Obtain the first element from the Huffman Tree Queue and set it as a left child*/
-        shared_ptr<HuffmanNode> left = make_shared<HuffmanNode>(HuffmanTreeQueue.top());
+        std::shared_ptr<HuffmanNode> left = std::make_shared<HuffmanNode>(HuffmanTreeQueue.top());
         HuffmanTreeQueue.pop(); /* Statement Description: Remove the element from the Huffman Tree Queue*/
 
         //Developmental Trace
@@ -17,7 +17,7 @@ shared_ptr<HuffmanTree> buildHuffTree(priority_queue<HuffmanNode, vector<Huffman
         //cout << "LHS: " << left->value << ": " << left->freq << endl;
 
         /* Statement Description: Obtain the next element from the Huffman Tree Queue and set it to the right child*/
-        shared_ptr<HuffmanNode> right = make_shared<HuffmanNode>(HuffmanTreeQueue.top());
+        std::shared_ptr<HuffmanNode> right = std::make_shared<HuffmanNode>(HuffmanTreeQueue.top());
         HuffmanTreeQueue.pop(); /* Statement Description: Remove the element from the Huffman Tree Queue*/
 
         //Developmental Trace
@@ -28,7 +28,7 @@ shared_ptr<HuffmanTree> buildHuffTree(priority_queue<HuffmanNode, vector<Huffman
 
         /* Statement Description: Combine the left and the right child by creating a parent Huffman Node and
          * setting its frequency to the sum of the frequencies of the child Huffman Nodes.*/
-        shared_ptr<HuffmanNode> parent(new HuffmanNode((left->freq + right->freq)));
+        std::shared_ptr<HuffmanNode> parent(new HuffmanNode((left->freq + right->freq)));
         parent->left = left;
         parent->right = right;
 
@@ -40,7 +40,7 @@ shared_ptr<HuffmanTree> buildHuffTree(priority_queue<HuffmanNode, vector<Huffman
         HuffmanTreeQueue.push(*parent); /* Statement Description: Insert this aggregated tree structure into the Huffman Tree Priority Queue*/
         }
 
-    shared_ptr<HuffmanTree> HuffTree = make_shared<HuffmanTree>(HuffmanTreeQueue.top()); /* Statement Description: Create a Huffman Tree Object
+    std::shared_ptr<HuffmanTree> HuffTree = std::make_shared<HuffmanTree>(HuffmanTreeQueue.top()); /* Statement Description: Create a Huffman Tree Object
                                                                    * from  the Huffman Node left in the Huffman Tree Priority Queue*/
 
     HuffmanTreeQueue.pop(); /* Statement Description: Empty the Huffman Tree Priority Queue (effectively deleting it)*/

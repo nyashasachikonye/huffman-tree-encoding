@@ -28,7 +28,7 @@
           <runcommandpicklistitem>make run</runcommandpicklistitem>
         </runcommandpicklist>
         <runcommand>make run</runcommand>
-        <rundir>/Users/Sach/Dropbox/Schoolwork/Computer Science CSC3023F/Computer Science CSC3022H/Assignments/Assignment 3/Working Directory/HuffmanTreeEncoding/.</rundir>
+        <rundir>/Users/Sach/Desktop/Final Submission/HuffmanTreeEncoding</rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>
         <remove-instrumentation>0</remove-instrumentation>

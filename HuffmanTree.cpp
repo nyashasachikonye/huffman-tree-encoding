@@ -14,11 +14,9 @@
 /* Statement Description: Huffman Tree Constructor*/
 HuffmanTree::HuffmanTree(HuffmanNode rt)
     {
-    root = make_shared<HuffmanNode>(rt);
+    root = std::make_shared<HuffmanNode>(rt);
     }
 
-/* Statement Description: Huffman Tree Default Constructor*/
-HuffmanTree::HuffmanTree() { }
 
 /* Statement Description: Huffman Tree Copy Assignment*/
 HuffmanTree::HuffmanTree(const HuffmanTree& orig)

@@ -17,11 +17,14 @@ class HuffmanNode; /* Statement Description: Including a pointer to the Huffman 
 class HuffmanTree {
 public:
 
-    shared_ptr<HuffmanNode> root;
+    std::shared_ptr<HuffmanNode> root;
 
-    HuffmanTree();
+    HuffmanTree(void) = default;
     HuffmanTree(HuffmanNode rt);
     HuffmanTree(const HuffmanTree& orig);
+    HuffmanTree(HuffmanTree && rhs) = default;
+    HuffmanTree & operator=(const HuffmanTree & rhs) = default;
+    HuffmanTree & operator=(HuffmanTree && rhs) = default;
     ~HuffmanTree();
 
 };

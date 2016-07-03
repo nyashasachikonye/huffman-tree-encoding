@@ -8,11 +8,6 @@
 #include <cstddef>
 #include "HuffmanNode.h"
 
-
-using namespace std;
-
-HuffmanNode::HuffmanNode() { }
-
 HuffmanNode::HuffmanNode(char v, int frq)
     {
     value = v;
@@ -38,7 +33,11 @@ HuffmanNode::HuffmanNode(const HuffmanNode& orig)
     right = orig.right;
     }
 
-HuffmanNode::~HuffmanNode() { }
+HuffmanNode::~HuffmanNode()
+    {
+    left = nullptr;
+    right = nullptr;
+    }
 
 
 
